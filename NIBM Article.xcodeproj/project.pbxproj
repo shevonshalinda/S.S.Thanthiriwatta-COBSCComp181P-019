@@ -10,6 +10,9 @@
 		6168A6CF13094AC7A29EA002 /* Pods_NIBM_Article.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F88FB082DA759DE06C4B00 /* Pods_NIBM_Article.framework */; };
 		761AC551BFEAEE630F807C9B /* Pods_NIBM_ArticleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F158C4A26DE1D12B2CD43C7F /* Pods_NIBM_ArticleTests.framework */; };
 		8F4C43555DFB890B6B732BFC /* Pods_NIBM_Article_NIBM_ArticleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478B4EC7B277053E4F1487F5 /* Pods_NIBM_Article_NIBM_ArticleUITests.framework */; };
+		C6363C2723698B7100576F84 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6363C2623698B7100576F84 /* HomeTableViewController.swift */; };
+		C6363C672369917000576F84 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6363C652369917000576F84 /* ArticleTableViewCell.swift */; };
+		C6363C682369917000576F84 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6363C662369917000576F84 /* ArticleTableViewCell.xib */; };
 		C6495CAD2366CCB20049A671 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6495CAC2366CCB20049A671 /* Login.storyboard */; };
 		C6495CAF2366D2DC0049A671 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6495CAE2366D2DC0049A671 /* LoginViewController.swift */; };
 		C6BA40FC236579220017A69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BA40FB236579220017A69B /* AppDelegate.swift */; };
@@ -46,6 +49,9 @@
 		478B4EC7B277053E4F1487F5 /* Pods_NIBM_Article_NIBM_ArticleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Article_NIBM_ArticleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496587A896B656444A471306 /* Pods-NIBM ArticleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM ArticleTests.release.xcconfig"; path = "Target Support Files/Pods-NIBM ArticleTests/Pods-NIBM ArticleTests.release.xcconfig"; sourceTree = "<group>"; };
 		50A68E492F8CC664B1C3B048 /* Pods-NIBM Article-NIBM ArticleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Article-NIBM ArticleUITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM Article-NIBM ArticleUITests/Pods-NIBM Article-NIBM ArticleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C6363C2623698B7100576F84 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		C6363C652369917000576F84 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		C6363C662369917000576F84 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
 		C6495CAC2366CCB20049A671 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C6495CAE2366D2DC0049A671 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C6BA40F8236579220017A69B /* NIBM Article.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NIBM Article.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +166,9 @@
 				C6BA410A236579250017A69B /* Info.plist */,
 				C6BA4102236579220017A69B /* NIBM_Article.xcdatamodeld */,
 				C6BA412C23657A3A0017A69B /* GoogleService-Info.plist */,
+				C6363C2623698B7100576F84 /* HomeTableViewController.swift */,
+				C6363C652369917000576F84 /* ArticleTableViewCell.swift */,
+				C6363C662369917000576F84 /* ArticleTableViewCell.xib */,
 			);
 			path = "NIBM Article";
 			sourceTree = "<group>";
@@ -295,6 +304,7 @@
 				C6BA412D23657A3A0017A69B /* GoogleService-Info.plist in Resources */,
 				C6BA4106236579250017A69B /* Assets.xcassets in Resources */,
 				C6495CAD2366CCB20049A671 /* Login.storyboard in Resources */,
+				C6363C682369917000576F84 /* ArticleTableViewCell.xib in Resources */,
 				C6BA4101236579220017A69B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +433,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6363C672369917000576F84 /* ArticleTableViewCell.swift in Sources */,
+				C6363C2723698B7100576F84 /* HomeTableViewController.swift in Sources */,
 				C6495CAF2366D2DC0049A671 /* LoginViewController.swift in Sources */,
 				C6BA40FC236579220017A69B /* AppDelegate.swift in Sources */,
 				C6BA4104236579220017A69B /* NIBM_Article.xcdatamodeld in Sources */,
