@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeTableViewController: UITableViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "articleCell", bundle: nil), forCellReuseIdentifier: "articleCell")
+        tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+        let ref = Database.database().reference()
+        ref.child("articles").observeSingleEvent(of: .value){
+            (snapshot) in
+            if let articleData = snapshot.value as? [String:Any] {
+                print("---------------------------\(articleData.debugDescription)")
+            }
+            
+            
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -38,10 +50,11 @@ class HomeTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as! ArticleTableViewCell
 
         cell.lblTitle.text = "gjhjhgj"
         cell.lblDesc.text = "dwdwdwedwedwde"
+        
         
         
         

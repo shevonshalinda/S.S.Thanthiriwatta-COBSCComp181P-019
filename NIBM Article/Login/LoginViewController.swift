@@ -28,9 +28,8 @@ class LoginViewController: UIViewController {
                 }
                 
                 //self.showAlert(message: "SignIn Successfully! Email: \(user_email!)")
+                UserDefaults.standard.set(user_email, forKey: "LoggedUser")
                 UserDefaults.standard.set(true, forKey: "LoggedIn")
-                let userLoginStatus = UserDefaults.standard.bool(forKey: "LoggedIn")
-                print(userLoginStatus)
                 UserDefaults.standard.synchronize()
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
                 self.present(vc, animated: true, completion: nil)
