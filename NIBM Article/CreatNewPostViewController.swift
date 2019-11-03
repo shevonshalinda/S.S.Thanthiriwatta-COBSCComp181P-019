@@ -97,10 +97,10 @@ class CreatNewPostViewController: UIViewController {
                 
                 let imgUrl = url.absoluteString
                 
-                let dbChildName = UUID().uuidString
+//                let dbChildName = UUID().uuidString
                 
                 
-                let dbRef = Database.database().reference().child("articles").child(dbChildName)
+                let dbRef = Database.database().reference().child("articles").child("allArticles").childByAutoId()
 
                 
                 let data = [
@@ -116,7 +116,8 @@ class CreatNewPostViewController: UIViewController {
                         return
                     }
                     alert.dismiss(animated: false, completion: nil)
-                    self.showAlert(message: "Successfully Uploaded")
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeTabbedController")
+                    self.present(vc, animated: true, completion: nil)
                     
                 })
                 

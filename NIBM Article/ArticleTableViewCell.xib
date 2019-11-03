@@ -19,15 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="381" height="273.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BVZ-WA-GXQ" userLabel="imgPhoto">
-                        <rect key="frame" x="120" y="13" width="218" height="114"/>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="114" id="FjM-dm-49p"/>
-                            <constraint firstAttribute="width" constant="218" id="sVU-NK-NwX"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sxasxasxasxasxasxasx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7r-JS-fcU" userLabel="lblTitle">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7r-JS-fcU" userLabel="lblTitle">
                         <rect key="frame" x="20" y="135" width="218" height="24"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <nil key="textColor"/>
@@ -50,23 +42,30 @@
                             <constraint firstAttribute="height" constant="45" id="YEk-Gc-c7t"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-T5-GYi" userLabel="lblDesc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-T5-GYi" userLabel="lblDesc">
                         <rect key="frame" x="20" y="164" width="344" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="G0r-WP-Kfl"/>
                             <constraint firstAttribute="width" constant="344" id="GiX-u7-3gT"/>
                         </constraints>
-                        <string key="text">sadsdasdasdasdasdasdasdasdasdasdasdasdasdasdsdasdasdasasdasxasxasxasxasx asx ads xasxa sx asxasx asx asxas asx asxas xasx asxasxasxasxasxasxas</string>
-                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BVZ-WA-GXQ" userLabel="imgPhoto">
+                        <rect key="frame" x="119" y="13" width="190" height="114"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="114" id="FjM-dm-49p"/>
+                            <constraint firstAttribute="width" constant="190" id="sVU-NK-NwX"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="D7r-JS-fcU" firstAttribute="top" secondItem="BVZ-WA-GXQ" secondAttribute="bottom" constant="8" id="3oF-ly-ae0"/>
                     <constraint firstItem="R80-HQ-uDm" firstAttribute="top" secondItem="B5Q-T5-GYi" secondAttribute="bottom" constant="8" symbolic="YES" id="BsA-dG-L4c"/>
                     <constraint firstItem="B5Q-T5-GYi" firstAttribute="top" secondItem="D7r-JS-fcU" secondAttribute="bottom" constant="5" id="WnM-E5-dll"/>
-                    <constraint firstItem="BVZ-WA-GXQ" firstAttribute="leading" secondItem="EVi-f8-n0H" secondAttribute="trailing" constant="55" id="v5K-eh-ZjU"/>
+                    <constraint firstItem="BVZ-WA-GXQ" firstAttribute="leading" secondItem="EVi-f8-n0H" secondAttribute="trailing" constant="54" id="v5K-eh-ZjU"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
@@ -77,7 +76,7 @@
                 <constraint firstItem="B5Q-T5-GYi" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="20" id="aRZ-Ec-ub3"/>
                 <constraint firstItem="D7r-JS-fcU" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="20" id="b92-0c-9pm"/>
                 <constraint firstItem="EVi-f8-n0H" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" constant="13" id="cmN-EX-NGh"/>
-                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="BVZ-WA-GXQ" secondAttribute="trailing" constant="43" id="g9v-AN-vKs"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="BVZ-WA-GXQ" secondAttribute="trailing" constant="72" id="g9v-AN-vKs"/>
                 <constraint firstItem="R80-HQ-uDm" firstAttribute="centerX" secondItem="njF-e1-oar" secondAttribute="centerX" id="lUA-9l-L0W"/>
                 <constraint firstItem="EVi-f8-n0H" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="20" id="nhP-f9-8EZ"/>
             </constraints>

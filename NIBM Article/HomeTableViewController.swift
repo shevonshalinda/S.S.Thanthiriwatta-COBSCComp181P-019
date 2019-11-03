@@ -8,28 +8,32 @@
 
 import UIKit
 import FirebaseDatabase
+import SwiftyJSON
+import Kingfisher
 
 class HomeTableViewController: UITableViewController {
     
+    private var items = [JSON](){
+        didSet{
+            tableView.reloadData()
+        }
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
-        let ref = Database.database().reference()
-        ref.child("articles").observeSingleEvent(of: .value){
-            (snapshot) in
-            if let articleData = snapshot.value as? [String:Any] {
-                print("---------------------------\(articleData.debugDescription)")
-            }
-            
-            
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let ref = Database.database().reference().child("articles")
+        ref.observe(.value, with: { snapshot in
+            self.items.removeAll()
+            let dict = snapshot.value as? [String: AnyObject]
+            let json = JSON(dict as Any)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+            for object in json["allArticles"]{
+                //print(object.1)
+                self.items.append(object.1)
+            }
+        })
     }
 
     // MARK: - Table view data source
@@ -41,7 +45,7 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return items.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -52,12 +56,12 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as! ArticleTableViewCell
 
-        cell.lblTitle.text = "gjhjhgj"
-        cell.lblDesc.text = "dwdwdwedwedwde"
-        
-        
-        
-        
+        cell.lblTitle.text = items[indexPath.row]["title"].stringValue
+        cell.lblDesc.text = items[indexPath.row]["description"].stringValue
+
+        let imageURL = URL(string: items[indexPath.row]["imageUrl"].stringValue)
+        cell.imgPhoto.kf.setImage(with: imageURL)
+
         return cell
     }
  
@@ -107,4 +111,23 @@ class HomeTableViewController: UITableViewController {
     }
     */
 
+    
+    func showAlert(message:String)
+    {
+        
+        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    
+    func nothingToShow(){
+        let lable = UILabel(frame: .zero)
+        lable.textColor = UIColor.darkGray
+        lable.numberOfLines = 0
+        lable.text = "Oops, /n No articles to show"
+        lable.textAlignment = .center
+        tableView.separatorStyle = .none
+        tableView.backgroundView = lable
+    }
 }

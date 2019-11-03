@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="ODB-hE-7PE">
             <objects>
-                <viewController id="ES5-Hv-jvo" customClass="LoginViewController" customModule="NIBM_Article" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LoginViewController" storyboardIdentifier="LoginViewController" id="ES5-Hv-jvo" customClass="LoginViewController" customModule="NIBM_Article" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dgC-KU-3Dq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

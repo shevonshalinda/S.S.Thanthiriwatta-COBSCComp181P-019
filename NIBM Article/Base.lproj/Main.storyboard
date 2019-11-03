@@ -13,18 +13,33 @@
         <!--Profile-->
         <scene sceneID="alJ-Q5-gFE">
             <objects>
-                <viewController id="RWI-95-XnT" sceneMemberID="viewController">
+                <viewController id="RWI-95-XnT" customClass="MyProfileViewController" customModule="NIBM_Article" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ly-EW-SiM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDu-Zx-d63">
+                                <rect key="frame" x="332" y="44" width="62" height="30"/>
+                                <state key="normal" title="Signout"/>
+                                <connections>
+                                    <action selector="btnSignOut:" destination="RWI-95-XnT" eventType="touchUpInside" id="egu-TE-f9p"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uvv-tb-nLV" firstAttribute="trailing" secondItem="fDu-Zx-d63" secondAttribute="trailing" constant="20" id="6iT-k9-AoN"/>
+                            <constraint firstItem="fDu-Zx-d63" firstAttribute="leading" secondItem="uvv-tb-nLV" secondAttribute="leading" constant="332" id="Ihv-1X-PMa"/>
+                            <constraint firstItem="fDu-Zx-d63" firstAttribute="top" secondItem="uvv-tb-nLV" secondAttribute="top" id="mUy-v2-BC1"/>
+                            <constraint firstItem="uvv-tb-nLV" firstAttribute="bottom" secondItem="fDu-Zx-d63" secondAttribute="bottom" constant="739" id="qpf-yS-ufY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uvv-tb-nLV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="userTabLogo" id="wDW-H5-Jmm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1P-F8-BGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="306" y="768"/>
+            <point key="canvasLocation" x="305.79710144927537" y="767.41071428571422"/>
         </scene>
         <!--New Article-->
         <scene sceneID="gse-BW-FWV">
@@ -206,7 +221,7 @@
         <!--Home-->
         <scene sceneID="E2Y-Rm-S1u">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bjg-GF-Vug" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="HomeTabbedController" storyboardIdentifier="HomeTabbedController" automaticallyAdjustsScrollViewInsets="NO" id="bjg-GF-Vug" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="homeTabLogo" largeContentSizeImage="Logo" id="ces-n6-GvO">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>

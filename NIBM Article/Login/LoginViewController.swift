@@ -16,6 +16,20 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func btnSigninCLicked(_ sender: UIButton) {
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        
+        
         Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPass.text!) { (user, error) in
             // ...
             if(error == nil)
@@ -31,6 +45,7 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(user_email, forKey: "LoggedUser")
                 UserDefaults.standard.set(true, forKey: "LoggedIn")
                 UserDefaults.standard.synchronize()
+                alert.dismiss(animated: false, completion: nil)
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
                 self.present(vc, animated: true, completion: nil)
                 
@@ -43,12 +58,15 @@ class LoginViewController: UIViewController {
                 if let errorCode = AuthErrorCode(rawValue: error!._code) {
                     switch errorCode {
                     case.wrongPassword:
+                        alert.dismiss(animated: false, completion: nil)
                         self.showAlert(message: "You entered an invalid password please try again!")
                         break
                     case.userNotFound:
+                        alert.dismiss(animated: false, completion: nil)
                         self.showAlert(message: "There is no matching account with that email")
                         break
                     default:
+                        alert.dismiss(animated: false, completion: nil)
                         self.showAlert(message: "Unexpected error \(errorCode.rawValue) please try again!")
                         print("Creating user error \(error.debugDescription)!")
                     }
@@ -59,6 +77,7 @@ class LoginViewController: UIViewController {
     
     func showAlert(message:String)
     {
+        
         let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
