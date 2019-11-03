@@ -23,6 +23,8 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        
         let ref = Database.database().reference().child("articles")
         ref.observe(.value, with: { snapshot in
             self.items.removeAll()
@@ -62,6 +64,9 @@ class HomeTableViewController: UITableViewController {
         let imageURL = URL(string: items[indexPath.row]["imageUrl"].stringValue)
         cell.imgPhoto.kf.setImage(with: imageURL)
 
+        let avatarImageURL = URL(string: items[indexPath.row]["userAvatarImageUrl"].stringValue)
+        cell.imgAvatar.kf.setImage(with: avatarImageURL)
+        
         return cell
     }
  

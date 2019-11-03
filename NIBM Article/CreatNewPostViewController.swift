@@ -9,11 +9,12 @@
 import UIKit
 import FirebaseStorage
 import FirebaseDatabase
+import SwiftyJSON
 
 
 class CreatNewPostViewController: UIViewController {
     var imagePicker: ImagePicker!
-
+    var avatarImageUrl: String!
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtDescription: UITextField!
     @IBOutlet weak var imgView: UIImageView!
@@ -25,6 +26,10 @@ class CreatNewPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
     
@@ -42,7 +47,19 @@ class CreatNewPostViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         
         ///////////////////////////////////////////////////////////////////////////////////////////
+        let loggedUserUID = UserDefaults.standard.string(forKey: "UserUID")
+        
+        let avatarRef = Database.database().reference().child("users").child(loggedUserUID!)
+        avatarRef.observe(.value, with: { snapshot in
+            
+            let dict = snapshot.value as? [String: AnyObject]
+            let json = JSON(dict as Any)
+            
+            self.avatarImageUrl = json["profileImageUrl"].stringValue
 
+            
+            
+        })
         
         guard let title = txtTitle.text, !title.isEmpty else {
             alert.dismiss(animated: false, completion: nil)
@@ -56,7 +73,7 @@ class CreatNewPostViewController: UIViewController {
             return
         }
         
-        let loggedUser = UserDefaults.standard.string(forKey: "LoggedUser")
+        
         
         
         guard let image = imgView.image,
@@ -107,7 +124,8 @@ class CreatNewPostViewController: UIViewController {
                     "title" : title,
                     "description" : description,
                     "imageUrl" : imgUrl,
-                    "user" : loggedUser
+                    "userUID" : loggedUserUID,
+                    "userAvatarImageUrl" : self.avatarImageUrl
                 ]
                 
                 dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
@@ -116,7 +134,7 @@ class CreatNewPostViewController: UIViewController {
                         return
                     }
                     alert.dismiss(animated: false, completion: nil)
-                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeTabbedController")
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
                     self.present(vc, animated: true, completion: nil)
                     
                 })
