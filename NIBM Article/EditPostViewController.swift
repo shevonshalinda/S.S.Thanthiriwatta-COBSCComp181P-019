@@ -1,40 +1,52 @@
 //
-//  CreatNewPostViewController.swift
+//  EditPostViewController.swift
 //  NIBM Article
 //
-//  Created by Kithmal Bulathsinhala on 10/31/19.
+//  Created by Kithmal Bulathsinhala on 11/6/19.
 //  Copyright © 2019 NIBM. All rights reserved.
 //
 
 import UIKit
-import FirebaseStorage
-import FirebaseDatabase
 import SwiftyJSON
+import FirebaseDatabase
+import Kingfisher
+import FirebaseStorage
 
-
-class CreatNewPostViewController: UIViewController {
+class EditPostViewController: UIViewController {
+    
     var imagePicker: ImagePicker!
     var avatarImageUrl: String!
-    @IBOutlet weak var txtTitle: UITextField!
-    @IBOutlet weak var txtDescription: UITextField!
-    @IBOutlet weak var imgView: UIImageView!
+    var article: JSON?
+    var articleID: String?
     
-    @IBAction func showImagePicker(_ sender: UIButton) {
+    
+    @IBOutlet weak var imgPhoto: UIImageView!
+    
+    @IBOutlet weak var txtTitle: UITextField!
+    
+    @IBOutlet weak var txtDescription: UITextField!
+    
+    @IBAction func imagePickerClick(_ sender: UIButton) {
         self.imagePicker.present(from: sender)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+
+        txtTitle.text = article!["title"].stringValue
+        txtDescription.text = article!["description"].stringValue
         
+        let imageURL = URL(string: article!["imageUrl"].stringValue)
+        imgPhoto.kf.setImage(with: imageURL)
         
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(tap)
+
         // Do any additional setup after loading the view.
     }
     
-    
-    @IBAction func uploadArticle(_ sender: Any) {
+    @IBAction func btnUpdateClick(_ sender: Any) {
+        
+        
         ///////////////////////////////////////////////////////////////////////////////////////////
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         
@@ -56,27 +68,25 @@ class CreatNewPostViewController: UIViewController {
             let json = JSON(dict as Any)
             
             self.avatarImageUrl = json["profileImageUrl"].stringValue
-
+            
             
             
         })
         
-        guard let title = txtTitle.text, !title.isEmpty else {
+        guard let Title = txtTitle.text, !Title.isEmpty else {
             alert.dismiss(animated: false, completion: nil)
             showAlert(message: "Title cannot be empty")
             return
         }
         
-        guard let description = txtDescription.text, !description.isEmpty else {
+        guard let Description = txtDescription.text, !Description.isEmpty else {
             alert.dismiss(animated: false, completion: nil)
             showAlert(message: "Description cannot be empty")
             return
         }
         
         
-        
-        
-        guard let image = imgView.image,
+        guard let image = imgPhoto.image,
             let imgData = image.jpegData(compressionQuality: 1.0) else {
                 alert.dismiss(animated: false, completion: nil)
                 showAlert(message: "An Image must be selected")
@@ -86,7 +96,6 @@ class CreatNewPostViewController: UIViewController {
         let imageName = UUID().uuidString
         
         let reference = Storage.storage().reference().child("articleImages").child(imageName)
-        
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
@@ -114,15 +123,15 @@ class CreatNewPostViewController: UIViewController {
                 
                 let imgUrl = url.absoluteString
                 
-//                let dbChildName = UUID().uuidString
+                //                let dbChildName = UUID().uuidString
                 
                 
-                let dbRef = Database.database().reference().child("articles").child("allArticles").childByAutoId()
-
+                let dbRef = Database.database().reference().child("articles").child("allArticles").child(self.articleID!)
+                
                 
                 let data = [
-                    "title" : title,
-                    "description" : description,
+                    "title" : Title,
+                    "description" : Description,
                     "imageUrl" : imgUrl,
                     "userUID" : loggedUserUID,
                     "userAvatarImageUrl" : self.avatarImageUrl
@@ -136,27 +145,14 @@ class CreatNewPostViewController: UIViewController {
                     alert.dismiss(animated: false, completion: nil)
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
                     self.present(vc, animated: true, completion: nil)
-                   
                     
                 })
                 
             }
             
         }
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
     func showAlert(message:String)
     {
         let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
@@ -166,9 +162,9 @@ class CreatNewPostViewController: UIViewController {
 
 }
 
-extension CreatNewPostViewController: ImagePickerDelegate {
+extension EditPostViewController: ImagePickerDelegate {
     
     func didSelect(image: UIImage?) {
-        self.imgView.image = image
+        self.imgPhoto.image = image
     }
 }

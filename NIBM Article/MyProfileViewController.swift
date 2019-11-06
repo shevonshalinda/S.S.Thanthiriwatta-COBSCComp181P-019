@@ -11,6 +11,8 @@ import  FirebaseStorage
 import FirebaseDatabase
 import  SwiftyJSON
 import Kingfisher
+import BiometricAuthentication
+
 
 class MyProfileViewController: UIViewController {
     var imagePicker: ImagePicker!
@@ -68,6 +70,8 @@ class MyProfileViewController: UIViewController {
     }
     
     @IBAction func btnUpdateClick(_ sender: Any) {
+        
+        
         ///////////////////////////////////////////////////////////////////////////////////////////
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         
@@ -178,7 +182,9 @@ class MyProfileViewController: UIViewController {
         
     }
     
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
@@ -206,6 +212,11 @@ class MyProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -231,3 +242,4 @@ extension MyProfileViewController: ImagePickerDelegate {
         self.imgProfile.image = image
     }
 }
+

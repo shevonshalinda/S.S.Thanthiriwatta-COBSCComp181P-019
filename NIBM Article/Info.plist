@@ -43,5 +43,7 @@
 	<string>This app wants to take pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app wants to access photos</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>This app wants to access your face</string>
 </dict>
 </plist>

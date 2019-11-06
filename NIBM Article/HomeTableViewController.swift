@@ -13,6 +13,7 @@ import Kingfisher
 
 class HomeTableViewController: UITableViewController {
     
+    private var articleIDs = [String]()
     private var items = [JSON](){
         didSet{
             tableView.reloadData()
@@ -23,20 +24,24 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+        nothingToShow()
+        
         
         
         let ref = Database.database().reference().child("articles")
         ref.observe(.value, with: { snapshot in
             self.items.removeAll()
+            self.articleIDs.removeAll()
             let dict = snapshot.value as? [String: AnyObject]
             let json = JSON(dict as Any)
 
             for object in json["allArticles"]{
-                //print(object.1)
+                self.articleIDs.append(object.0)
                 self.items.append(object.1)
             }
         })
     }
+    
 
     // MARK: - Table view data source
 
@@ -61,15 +66,43 @@ class HomeTableViewController: UITableViewController {
         cell.lblTitle.text = items[indexPath.row]["title"].stringValue
         cell.lblDesc.text = items[indexPath.row]["description"].stringValue
 
+        
         let imageURL = URL(string: items[indexPath.row]["imageUrl"].stringValue)
         cell.imgPhoto.kf.setImage(with: imageURL)
 
         let avatarImageURL = URL(string: items[indexPath.row]["userAvatarImageUrl"].stringValue)
-        cell.imgAvatar.kf.setImage(with: avatarImageURL)
+        cell.avatarBtn.kf.setImage(with: avatarImageURL, for: .normal)
+        cell.avatarBtn.kf.setBackgroundImage(with: avatarImageURL, for: .normal)
+        
+        cell.User = items[indexPath.row]["userUID"].stringValue
+        
+        cell.delegate = self
         
         return cell
     }
+    
  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let loggedUserUid = UserDefaults.standard.string(forKey: "UserUID")
+        let tempUID = items[indexPath.row]["userUID"].stringValue
+        if loggedUserUid == tempUID{
+            let vc = EditPostViewController(nibName: "EditPostViewController", bundle: nil)
+            vc.article = items[indexPath.row]
+            vc.articleID = articleIDs[indexPath.row]
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+            let vc = SIngleArticleViewController(nibName: "SIngleArticleViewController", bundle: nil)
+            vc.article = items[indexPath.row]
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -135,4 +168,17 @@ class HomeTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundView = lable
     }
+}
+
+extension HomeTableViewController : ArticleTableViewCellDelegate {
+    func avatarTableViewCell(_ articleTableViewCell: ArticleTableViewCell, avatarButtonTappedFor user: String) {
+        
+        let vc = UserViewController(nibName: "UserViewController", bundle: nil)
+        vc.UID = user
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+        
 }

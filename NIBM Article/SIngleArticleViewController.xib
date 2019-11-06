@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SIngleArticleViewController" customModule="NIBM_Article" customModuleProvider="target">
+            <connections>
+                <outlet property="imgAvatar" destination="VpF-XN-ChQ" id="uGt-Sm-eXX"/>
+                <outlet property="imgPhoto" destination="Wvf-xh-DVF" id="tZ7-dS-y5s"/>
+                <outlet property="txtDescription" destination="RPr-6h-TDA" id="w3N-C3-VpC"/>
+                <outlet property="txtTitle" destination="BP1-4i-N2K" id="hmv-On-8Nw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wvf-xh-DVF" userLabel="imgPhoto">
+                    <rect key="frame" x="91" y="178" width="232" height="161"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="232" id="ZZ5-1O-Wvi"/>
+                        <constraint firstAttribute="height" constant="161" id="cCe-GF-1Is"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP1-4i-N2K" userLabel="lblTitle">
+                    <rect key="frame" x="20" y="359" width="374" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="4d5-6j-E0s"/>
+                        <constraint firstAttribute="width" constant="374" id="SJh-BX-mn2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gz1-YN-2OZ">
+                    <rect key="frame" x="107" y="511" width="200" height="36"/>
+                    <color key="backgroundColor" red="0.61255699365179861" green="0.9151458452032496" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="1NE-dB-kKT"/>
+                        <constraint firstAttribute="height" constant="36" id="PAV-Gy-YrC"/>
+                    </constraints>
+                    <state key="normal" image="clappingIcon"/>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VpF-XN-ChQ" userLabel="imgAvatar">
+                    <rect key="frame" x="20" y="102" width="61" height="61"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="61" id="8fy-f1-9ZO"/>
+                        <constraint firstAttribute="height" constant="61" id="tQb-c3-miU"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPr-6h-TDA" userLabel="lblDesc">
+                    <rect key="frame" x="20" y="388" width="374" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="374" id="5WK-HB-tqo"/>
+                        <constraint firstAttribute="height" constant="45" id="qg6-ab-d5v"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BP1-4i-N2K" secondAttribute="trailing" constant="20" id="6OZ-3D-t8B"/>
+                <constraint firstItem="gz1-YN-2OZ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="9NQ-d6-q7B"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VpF-XN-ChQ" secondAttribute="trailing" constant="333" id="EZB-Vf-n7l"/>
+                <constraint firstItem="VpF-XN-ChQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="THa-3D-FLz"/>
+                <constraint firstItem="Wvf-xh-DVF" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="V7d-PJ-U3o"/>
+                <constraint firstItem="BP1-4i-N2K" firstAttribute="top" secondItem="Wvf-xh-DVF" secondAttribute="bottom" constant="20" id="VZL-mP-dF8"/>
+                <constraint firstItem="VpF-XN-ChQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="58" id="hMw-7o-eya"/>
+                <constraint firstItem="RPr-6h-TDA" firstAttribute="top" secondItem="BP1-4i-N2K" secondAttribute="bottom" constant="5" id="ht9-hm-9tq"/>
+                <constraint firstItem="RPr-6h-TDA" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="iA3-pr-5gW"/>
+                <constraint firstItem="gz1-YN-2OZ" firstAttribute="top" secondItem="RPr-6h-TDA" secondAttribute="bottom" constant="78" id="uWi-Lz-Fnf"/>
+                <constraint firstItem="BP1-4i-N2K" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="y5J-9A-buT"/>
+                <constraint firstItem="Wvf-xh-DVF" firstAttribute="top" secondItem="VpF-XN-ChQ" secondAttribute="bottom" constant="15" id="ziN-ue-xUZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="clappingIcon" width="24" height="24"/>
+    </resources>
+</document>

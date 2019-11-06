@@ -88,6 +88,9 @@ class SignupViewController: UIViewController {
                             case .weakPassword:
                                 alert.dismiss(animated: false, completion: nil)
                                 self.showAlert(message: "Password must have at least 6 charachters")
+                            case .emailAlreadyInUse:
+                                alert.dismiss(animated: false, completion: nil)
+                                self.showAlert(message: "Email already in use")
                             default:
                                 alert.dismiss(animated: false, completion: nil)
                                 print("Creating user error \(error.debugDescription)!")
