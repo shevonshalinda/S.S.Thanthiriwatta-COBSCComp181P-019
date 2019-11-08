@@ -38,8 +38,6 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     @IBAction func avatarButtonTapped(_ sender: UIButton){
-        // ask the delegate (in most case, its the view controller) to
-        // call the function 'subscribeButtonTappedFor' on itself.
         if let user = User,
             let delegate = delegate {
             self.delegate?.avatarTableViewCell(self, avatarButtonTappedFor: user)

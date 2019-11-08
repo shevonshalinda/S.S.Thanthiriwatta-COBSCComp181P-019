@@ -13,7 +13,7 @@ import Kingfisher
 class SIngleArticleViewController: UIViewController {
 
     
-    @IBOutlet weak var imgAvatar: UIImageView!
+    @IBOutlet weak var btnAvatar: UIButton!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var txtTitle: UILabel!
     @IBOutlet weak var txtDescription: UILabel!
@@ -31,20 +31,18 @@ class SIngleArticleViewController: UIViewController {
         imgPhoto.kf.setImage(with: imageURL)
         
         let avatarURL = URL(string: article!["userAvatarImageUrl"].stringValue)
-        imgAvatar.kf.setImage(with: avatarURL)
+        btnAvatar.kf.setImage(with: avatarURL, for: .normal)
+        btnAvatar.kf.setBackgroundImage(with: avatarURL, for: .normal)
         
-        // Do any additional setup after loading the view.
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnAvatarClick(_ sender: Any) {
+        let vc = UserViewController(nibName: "UserViewController", bundle: nil)
+        vc.UID = article!["userUID"].stringValue
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
-    */
+    
+
 
 }

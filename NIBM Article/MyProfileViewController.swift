@@ -11,7 +11,7 @@ import  FirebaseStorage
 import FirebaseDatabase
 import  SwiftyJSON
 import Kingfisher
-import BiometricAuthentication
+
 
 
 class MyProfileViewController: UIViewController {
@@ -65,6 +65,8 @@ class MyProfileViewController: UIViewController {
     @IBAction func btnSignOut(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: "LoggedUser")
         UserDefaults.standard.removeObject(forKey: "LoggedIn")
+        UserDefaults.standard.removeObject(forKey: "UserUID")
+        UserDefaults.standard.synchronize()
         let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
         self.present(vc, animated: true, completion: nil)
     }
